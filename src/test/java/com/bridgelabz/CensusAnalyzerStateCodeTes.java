@@ -4,17 +4,30 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CensusAnalyzerStateCodeTes {
-    private static final String INDIA_CENSUS_CSV_PATH = "E:\\eclipseProgram\\untitled\\Census-Analyzer\\src\\main\\resources\\IndiaStateCode.csv";
+    private static final String INDIA_STATE_CSV_PATH = "E:\\eclipseProgram\\untitled\\Census-Analyzer\\src\\main\\resources\\IndiaStateCode.csv";
 
+    //2.1 Happy Test case for correct record match
     @Test
-    public void givenIndianCensusCSVFileReturnsCorrectRecords() {
+    public void givenIndianStateCSVFileReturnsCorrectRecords() {
         CensusAnalyzer censusAnalyzer = new CensusAnalyzer();
         try {
-            int numOfRecord = censusAnalyzer.loadIndiaStateCodeData(INDIA_CENSUS_CSV_PATH);
+            int numOfRecord = censusAnalyzer.loadIndiaStateCodeData(INDIA_STATE_CSV_PATH);
             Assert.assertEquals(37, numOfRecord);
         } catch (CensusAnalyzerException e) {
             e.printStackTrace();
         }
     }
-}
 
+    //2.2 Sad Test case for wrong record
+    @Test
+    public void givenIndianStateCSVFileReturnsInCorrectRecords() {
+        CensusAnalyzer censusAnalyzer = new CensusAnalyzer();
+        try {
+            int numOfRecord = censusAnalyzer.loadIndiaStateCodeData(INDIA_STATE_CSV_PATH);
+            Assert.assertEquals(40, numOfRecord);
+        } catch (CensusAnalyzerException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
